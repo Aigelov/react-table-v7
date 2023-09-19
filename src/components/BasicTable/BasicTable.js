@@ -1,21 +1,30 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
 
-import MOCK_DATA from "../data/MOCK_DATA.json";
+import MOCK_DATA from "../../data/MOCK_DATA.json";
 
 import { COLUMNS } from "./columns";
 
-import "./table.css";
+import "../table.css";
 
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []);
+  /**
+   * Data from mockaroo.com
+   */
   const data = useMemo(() => MOCK_DATA, []);
 
-  const { getTableBodyProps, getTableProps, headerGroups, prepareRow, rows } =
-    useTable({
-      columns,
-      data,
-    });
+  const {
+    footerGroups,
+    getTableBodyProps,
+    getTableProps,
+    headerGroups,
+    prepareRow,
+    rows,
+  } = useTable({
+    columns,
+    data,
+  });
 
   return (
     <table {...getTableProps()}>
@@ -41,6 +50,15 @@ export const BasicTable = () => {
           );
         })}
       </tbody>
+      <tfoot>
+        {footerGroups.map((footerGroup) => (
+          <tr {...footerGroup.getFooterGroupProps()}>
+            {footerGroup.headers.map((column) => (
+              <td {...column.getFooterProps()}>{column.render("Footer")}</td>
+            ))}
+          </tr>
+        ))}
+      </tfoot>
     </table>
   );
 };
