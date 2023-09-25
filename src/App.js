@@ -1,11 +1,11 @@
-import { PaginationTable } from "./components";
+import { RowSelectionTable } from "./components";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <PaginationTable />
+      <RowSelectionTable />
     </div>
   );
 }
