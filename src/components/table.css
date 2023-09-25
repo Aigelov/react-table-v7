@@ -27,12 +27,13 @@ table th, table tfoot td {
 }
 
 input[type=text],
+input[type=number],
 select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #CCC;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -57,8 +58,50 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-/* table div {
+.pagination {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #04AA6D; 
+  border: 1px solid #04AA6D;
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-} */
+  color: #FFF;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px 18px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+input.goToPageInput {
+  background-color: #04AA6D;
+  border: 1px solid #04AA6D;
+  color: #FFF;
+  font-size: 16px;
+  margin-left: 8px;
+  padding: 8px 12px;
+  width: 80px;
+}
+
+select.pageSize {
+  background-color: #04AA6D;
+  border: 1px solid #04AA6D;
+  color: #FFF;
+  font-size: 16px;
+  padding: 8px;
+  width: 100px;
+}
+
+select.pageSize:focus {
+  outline: none;
+}

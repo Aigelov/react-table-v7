@@ -1,11 +1,11 @@
-import { FilteringTable } from "./components";
+import { PaginationTable } from "./components";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <FilteringTable />
+      <PaginationTable />
     </div>
   );
 }
