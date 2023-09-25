@@ -48,6 +48,11 @@ input[type=submit] {
   cursor: pointer;
 }
 
+input:focus {
+  border-color: #45a049;
+  outline: none;
+}
+
 input[type=submit]:hover {
   background-color: #45a049;
 }
