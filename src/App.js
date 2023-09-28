@@ -1,11 +1,11 @@
-import { RowSelectionTable } from "./components";
+import { ColumnOrder } from "./components";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <RowSelectionTable />
+      <ColumnOrder />
     </div>
   );
 }
