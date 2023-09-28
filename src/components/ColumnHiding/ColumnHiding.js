@@ -1,50 +1,49 @@
 import { useMemo } from "react";
-import { useRowSelect, useTable } from "react-table";
+import { useTable } from "react-table";
 
 import MOCK_DATA from "../../data/MOCK_DATA.json";
+import { Checkbox } from "../Checkbox";
 
 import { COLUMNS } from "./columns";
 
 import "../table.css";
-import { Checkbox } from "../Checkbox";
 
-export const RowSelectionTable = () => {
+export const ColumnHiding = () => {
   const columns = useMemo(() => COLUMNS, []);
   /**
    * Data from mockaroo.com
    */
-  const data = useMemo(() => MOCK_DATA.slice(0, 10), []);
+  const data = useMemo(() => MOCK_DATA, []);
 
   const {
+    allColumns,
     footerGroups,
     getTableBodyProps,
     getTableProps,
+    getToggleHideAllColumnsProps,
     headerGroups,
     prepareRow,
     rows,
-    selectedFlatRows,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <Checkbox {...getToggleAllRowsSelectedProps()} />
-          ),
-          Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />,
-        },
-        ...columns,
-      ]);
-    }
-  );
+  } = useTable({
+    columns,
+    data,
+  });
 
   return (
     <>
+      <div style={{ marginBottom: "20px" }}>
+        <div>
+          <Checkbox {...getToggleHideAllColumnsProps()} /> Toggle All
+        </div>
+        {allColumns.map((column) => (
+          <div key={column.id}>
+            <label>
+              <input type="checkbox" {...column.getToggleHiddenProps()} />{" "}
+              {column.Header}
+            </label>
+          </div>
+        ))}
+      </div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -78,18 +77,6 @@ export const RowSelectionTable = () => {
           ))}
         </tfoot>
       </table>
-
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              selectedFlatRows: selectedFlatRows.map((row) => row.original),
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
     </>
   );
 };
